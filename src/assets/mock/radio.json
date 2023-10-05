@@ -1,0 +1,26 @@
+[
+    {
+      "radioName": "Radio Impuls",
+      "radioSlug": "impuls",
+      "radioType": ["Dance", "New"],
+      "radioImg": "../assets/img/radio/radioimpuls.png",
+      "radioDescripton": "Radio Impuls este un post de radio de muzică pop și dance din România. Postul are sediul în Cluj-Napoca și aparține companiei Doğan Media International SA, care deține și postul de televiziune Kanal D România. Postul de radio s-a lansat în 2003",
+      "radioContact":"0754 222 999 (WhatsApp)"
+    },
+    {
+      "radioName": "KissFM",
+      "radioSlug": "kissfm",
+      "radioType": ["Pop", "Dance", "HipHop"],
+      "radioImg": "./assets/img/radio/kissfm.jpg",
+      "radioDescripton": "Kiss FM este un post de radio românesc cu acoperire națională, care emite din București în peste 57 de stații locale. Radioul a început să emită pe 5 noiembrie 2003 după ce rețeaua Radio Contact Belgia a renunțat la stațiile locale din România. Formatul muzical este Contemporary Hit Radio",
+      "radioContact":"021 318 8000 / office@kissfm.ro"
+    },
+    {
+        "radioName": "TarafFM",
+        "radioSlug": "taraffm",
+        "radioType": ["Manele"],
+        "radioImg": "./assets/img/radio/kissfm.jpg",
+        "radioDescripton": "Kiss FM este un post de radio românesc cu acoperire națională, care emite din București în peste 57 de stații locale. Radioul a început să emită pe 5 noiembrie 2003 după ce rețeaua Radio Contact Belgia a renunțat la stațiile locale din România. Formatul muzical este Contemporary Hit Radio",
+        "radioContact":"021 318 8000 / office@kissfm.ro"
+      }
+]

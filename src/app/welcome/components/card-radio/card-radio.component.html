@@ -1,0 +1,14 @@
+<a [routerLink]="'/radio/'+radio.radioSlug" >
+<p-card [header]="radio.radioName" >
+    
+    <ng-template pTemplate="body"  >
+        <h5>{{radio.radioType}}</h5>
+        <p >
+            {{radio.radioDescripton}}
+        </p>
+    </ng-template>
+    <ng-template pTemplate="footer" >
+        <p>{{radio.radioContact}}</p>
+    </ng-template>
+</p-card>
+</a>

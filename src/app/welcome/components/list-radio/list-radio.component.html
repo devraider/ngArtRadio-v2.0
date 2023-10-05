@@ -1,0 +1,15 @@
+<div class="row justify-content-around">
+  <ng-container *ngIf="radioChannels$ | async as radioChannels; else noRadioTemplate">
+        <ng-container *ngFor="let radio of radioChannels">
+            <div class="col-sm-5 mt-3">
+                <app-card-radio [radio]="radio"></app-card-radio>
+            </div>
+        </ng-container>
+  </ng-container>
+  <ng-template #noRadioTemplate>
+    <div class="d-flex justify-content-center align-items-center gap-3 fs-5">
+        <i class="far fa-window-close"></i>
+        <p>No radio stream found</p>
+    </div>
+</ng-template>
+</div>

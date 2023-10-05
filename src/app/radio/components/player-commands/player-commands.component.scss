@@ -1,0 +1,28 @@
+// .row {
+//     text-align: center;
+//     width: 100%;
+// }
+
+.custom-player {
+    height: 15vh;
+    align-items: center;
+    padding: 0 15px;
+}
+.row {
+    align-items: center;
+}
+
+.font-size-30 {
+    font-size: 30px;
+}
+
+img {
+    animation-play-state: paused;
+}
+
+.show-yt-video {
+    position: absolute;
+    text-align: end;
+    right: 20px;
+    top: 10px;
+}
