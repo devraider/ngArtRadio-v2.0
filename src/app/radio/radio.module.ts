@@ -7,6 +7,7 @@ import { PlayerPageComponent } from './components/player-page/player-page.compon
 import { RouterModule } from '@angular/router';
 import { TableModule } from 'primeng/table';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -21,6 +22,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CommonModule,
     TableModule,
     FontAwesomeModule,
+    MatButtonModule,
     RouterModule.forChild([
       {path: ":radioChannelName", component: MainComponent}
     ])

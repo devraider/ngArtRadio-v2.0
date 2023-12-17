@@ -1,15 +1,12 @@
 <!-- <app-playlist></app-playlist> -->
-
+<p>{{songsList$ | async}}</p>
 <app-player-page
     [style.display]="showYtVideo ? '' : 'none'"
-    [youtubeId]="'IPb-WBAda9M'"
-    [playPause]="playPause"
-    (playerState)="handlePlayerState($event)"
+    [youtubeId]="'rvhqsqmzm20'"
     >
 </app-player-page>
 
 <app-player-commands
     [song]="songs[0]"
-    [playPause]="playPause"
     (showYtVideo)="handleShowYtVideo($event)">
 </app-player-commands>
