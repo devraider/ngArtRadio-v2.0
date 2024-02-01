@@ -2,7 +2,7 @@
 <p-card [header]="radio.radioName" >
     
     <ng-template pTemplate="body"  >
-        <h5>{{radio.radioType}}</h5>
+        <h5>{{radio.radioType.join(", ")}}</h5>
         <p >
             {{radio.radioDescripton}}
         </p>
