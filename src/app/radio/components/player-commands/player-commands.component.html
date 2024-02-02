@@ -20,13 +20,13 @@
         <div class="col-6">
             <div class="row ">
                 <div class="col-4">
-                    <button mat-icon-button><i class="fa-solid fa-backward font-size-30"></i></button>
+                    <button mat-icon-button (click)="handleBackwordForwardSong(-1)"><i class="fa-solid fa-backward font-size-30"></i></button>
                 </div>
                 <div class="col-4">
                     <button mat-icon-button (click)="handlePlayPause()"><i class="fa-solid font-size-30" [ngClass]="(playPause$ | async) ? 'fa-pause' : 'fa-play' "></i></button>
                 </div>
                 <div class="col-4">
-                    <button mat-icon-button><i class="fa-solid fa-forward font-size-30"></i></button>
+                    <button mat-icon-button (click)="handleBackwordForwardSong(1)"><i class="fa-solid fa-forward font-size-30"></i></button>
                 </div>
             </div>
 

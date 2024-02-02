@@ -11,6 +11,7 @@ import { PlayerMainService } from 'src/app/services/player-main.service';
 export class PlayerCommandsComponent implements OnInit {
   @Input() song!: Song;
   @Input() playPause!: boolean;
+  @Output() backwordForwardSong = new EventEmitter<number>();
   @Output() showYtVideo = new EventEmitter<boolean>();
   playPause$!: Observable<boolean>;
   showYtVideoIcon = false;
@@ -36,5 +37,10 @@ export class PlayerCommandsComponent implements OnInit {
       this._playerMainService.handlePlayPause(!playerState);
     });
     
+  }
+
+
+  handleBackwordForwardSong(action: number) {
+    console.log("handleBackwordForwardSong", action);
   }
 }
