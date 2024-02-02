@@ -2,11 +2,11 @@
 <!-- <p>{{songsList$ | async | json}}</p> -->
 <app-player-page
     [style.display]="showYtVideo ? '' : 'none'"
-    [youtubeId]="'rvhqsqmzm20'"
+    [youtubeId]="songs[4].youtubeId"
     >
 </app-player-page>
 
 <app-player-commands
-    [song]="songs[0]"
+    [song]="songs[4]"
     (showYtVideo)="handleShowYtVideo($event)">
 </app-player-commands>
