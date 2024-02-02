@@ -29,7 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RouterModule.forRoot([
       // Do leazy loading
       {path: "", loadChildren: () => import('./welcome/welcome.module').then(m => m.WelcomeModule)},
-      {path: "radio", loadChildren: () => import('./radio/radio.module').then(m => m.RadioModule)}
+      {path: "radio", loadChildren: () => import('./radio/radio.module').then(m => m.RadioModule)},
+      {path: "**", loadChildren: () => import('./welcome/welcome.module').then(m => m.WelcomeModule)},
     ]),
     NgbModule,
     FontAwesomeModule,
