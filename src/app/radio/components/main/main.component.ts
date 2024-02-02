@@ -19,6 +19,16 @@ export class MainComponent implements OnInit {
   songs = [
     {
       "id": 2,
+      "songSinger": "Doja Cat",
+      "songName": "Paint The Town Red",
+      "songLikes": 0,
+      "songDislikes": 0,
+      "youtubeId": "m4_9TFeMfJE",
+      "dateRadioPlayed": "17-09-2023 15:12:33",
+      "radioChannel": "KissFM",
+    },
+    {
+      "id": 2,
       "songSinger": "Edward Sanda X Theo Rose",
       "songName": "Stii unde ma gasesti",
       "songLikes": 0,
