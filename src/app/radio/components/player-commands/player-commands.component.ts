@@ -41,6 +41,6 @@ export class PlayerCommandsComponent implements OnInit {
 
 
   handleBackwordForwardSong(action: number) {
-    console.log("handleBackwordForwardSong", action);
+    this.backwordForwardSong.emit(action);
   }
 }

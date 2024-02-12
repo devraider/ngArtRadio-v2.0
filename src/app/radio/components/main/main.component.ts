@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy,ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, map, switchMap, tap } from 'rxjs';
 import { Song } from 'src/app/models/song';
 import { PlayerMainService } from 'src/app/services/player-main.service';
+import { PlaylistStartComponent } from '../playlist-start/playlist-start.component';
 
 @Component({
   selector: 'app-main',
@@ -16,230 +18,9 @@ export class MainComponent implements OnInit {
   showYtVideo!: boolean;
   playPause = false;
   songsList$!: Observable<Song[]>;
-  songs = [
-    {
-      "id": 2,
-      "songSinger": "Doja Cat",
-      "songName": "Paint The Town Red",
-      "songLikes": 0,
-      "songDislikes": 0,
-      "youtubeId": "m4_9TFeMfJE",
-      "dateRadioPlayed": "17-09-2023 15:12:33",
-      "radioChannel": "KissFM",
-    },
-    {
-      "id": 2,
-      "songSinger": "Edward Sanda X Theo Rose",
-      "songName": "Stii unde ma gasesti",
-      "songLikes": 0,
-      "songDislikes": 0,
-      "youtubeId": "9APbLzu5ZRQ",
-      "dateRadioPlayed": "17-09-2023 15:12:33",
-      "radioChannel": "KissFM",
-    },
-    {
-      "id": 3,
-      "songSinger": "NANE",
-      "songName": "COCKTAIL",
-      "songLikes": 1,
-      "songDislikes": 0,
-      "youtubeId": "6d8LU2Mu_Y4",
-      "dateRadioPlayed": "16-09-2023 15:12:33",
-      "radioChannel": "KissFM",
-    },
-    {
-      "id": 3,
-      "songSinger": "KILLA FONIC",
-      "songName": "Miami Bici",
-      "songLikes": 0,
-      "songDislikes": 1,
-      "youtubeId": "7XQ0t89ibJw",
-      "dateRadioPlayed": "16-09-2023 15:12:33",
-      "radioChannel": "KissFM",
-    },
-    {
-      "id": 3,
-      "songSinger": "KILLA FONIC",
-      "songName": "Miami Bici",
-      "songLikes": 0,
-      "songDislikes": 1,
-      "youtubeId": "7XQ0t89ibJw",
-      "dateRadioPlayed": "16-09-2023 15:12:33",
-      "radioChannel": "KissFM",
-    },
-    {
-      "id": 3,
-      "songSinger": "KILLA FONIC",
-      "songName": "Miami Bici",
-      "songLikes": 0,
-      "songDislikes": 1,
-      "youtubeId": "7XQ0t89ibJw",
-      "dateRadioPlayed": "16-09-2023 15:12:33",
-      "radioChannel": "KissFM",
-    },
-    {
-      "id": 3,
-      "songSinger": "KILLA FONIC",
-      "songName": "Miami Bici",
-      "songLikes": 0,
-      "songDislikes": 1,
-      "youtubeId": "7XQ0t89ibJw",
-      "dateRadioPlayed": "16-09-2023 15:12:33",
-      "radioChannel": "KissFM",
-    },
-    {
-      "id": 3,
-      "songSinger": "KILLA FONIC",
-      "songName": "Miami Bici",
-      "songLikes": 0,
-      "songDislikes": 1,
-      "youtubeId": "7XQ0t89ibJw",
-      "dateRadioPlayed": "16-09-2023 15:12:33",
-      "radioChannel": "KissFM",
-    },
-    {
-      "id": 3,
-      "songSinger": "KILLA FONIC",
-      "songName": "Miami Bici",
-      "songLikes": 0,
-      "songDislikes": 1,
-      "youtubeId": "7XQ0t89ibJw",
-      "dateRadioPlayed": "16-09-2023 15:12:33",
-      "radioChannel": "KissFM",
-    },
-    {
-      "id": 3,
-      "songSinger": "KILLA FONIC",
-      "songName": "Miami Bici",
-      "songLikes": 0,
-      "songDislikes": 1,
-      "youtubeId": "7XQ0t89ibJw",
-      "dateRadioPlayed": "16-09-2023 15:12:33",
-      "radioChannel": "KissFM",
-    },
-    {
-      "id": 3,
-      "songSinger": "KILLA FONIC",
-      "songName": "Miami Bici",
-      "songLikes": 0,
-      "songDislikes": 1,
-      "youtubeId": "7XQ0t89ibJw",
-      "dateRadioPlayed": "16-09-2023 15:12:33",
-      "radioChannel": "KissFM",
-    },
-    {
-      "id": 3,
-      "songSinger": "KILLA FONIC",
-      "songName": "Miami Bici",
-      "songLikes": 0,
-      "songDislikes": 1,
-      "youtubeId": "7XQ0t89ibJw",
-      "dateRadioPlayed": "16-09-2023 15:12:33",
-      "radioChannel": "KissFM",
-    },
-    {
-      "id": 3,
-      "songSinger": "KILLA FONIC",
-      "songName": "Miami Bici",
-      "songLikes": 0,
-      "songDislikes": 1,
-      "youtubeId": "7XQ0t89ibJw",
-      "dateRadioPlayed": "16-09-2023 15:12:33",
-      "radioChannel": "KissFM",
-    },
-    {
-      "id": 3,
-      "songSinger": "KILLA FONIC",
-      "songName": "Miami Bici",
-      "songLikes": 0,
-      "songDislikes": 1,
-      "youtubeId": "7XQ0t89ibJw",
-      "dateRadioPlayed": "16-09-2023 15:12:33",
-      "radioChannel": "KissFM",
-    },
-    {
-      "id": 3,
-      "songSinger": "KILLA FONIC",
-      "songName": "Miami Bici",
-      "songLikes": 0,
-      "songDislikes": 1,
-      "youtubeId": "7XQ0t89ibJw",
-      "dateRadioPlayed": "16-09-2023 15:12:33",
-      "radioChannel": "KissFM",
-    },
-    {
-      "id": 3,
-      "songSinger": "KILLA FONIC",
-      "songName": "Miami Bici",
-      "songLikes": 0,
-      "songDislikes": 1,
-      "youtubeId": "7XQ0t89ibJw",
-      "dateRadioPlayed": "16-09-2023 15:12:33",
-      "radioChannel": "KissFM",
-    },
-    {
-      "id": 3,
-      "songSinger": "KILLA FONIC",
-      "songName": "Miami Bici",
-      "songLikes": 0,
-      "songDislikes": 1,
-      "youtubeId": "7XQ0t89ibJw",
-      "dateRadioPlayed": "16-09-2023 15:12:33",
-      "radioChannel": "KissFM",
-    },
-    {
-      "id": 3,
-      "songSinger": "KILLA FONIC",
-      "songName": "Miami Bici",
-      "songLikes": 0,
-      "songDislikes": 1,
-      "youtubeId": "7XQ0t89ibJw",
-      "dateRadioPlayed": "16-09-2023 15:12:33",
-      "radioChannel": "KissFM",
-    },
-    {
-      "id": 3,
-      "songSinger": "KILLA FONIC",
-      "songName": "Miami Bici",
-      "songLikes": 0,
-      "songDislikes": 1,
-      "youtubeId": "7XQ0t89ibJw",
-      "dateRadioPlayed": "16-09-2023 15:12:33",
-      "radioChannel": "KissFM",
-    },
-    {
-      "id": 3,
-      "songSinger": "KILLA FONIC",
-      "songName": "Miami Bici",
-      "songLikes": 0,
-      "songDislikes": 1,
-      "youtubeId": "7XQ0t89ibJw",
-      "dateRadioPlayed": "16-09-2023 15:12:33",
-      "radioChannel": "KissFM",
-    },
-    {
-      "id": 3,
-      "songSinger": "KILLA FONIC",
-      "songName": "Miami Bici",
-      "songLikes": 0,
-      "songDislikes": 1,
-      "youtubeId": "7XQ0t89ibJw",
-      "dateRadioPlayed": "16-09-2023 15:12:33",
-      "radioChannel": "KissFM",
-    },
-    {
-      "id": 3,
-      "songSinger": "KILLA FONIC",
-      "songName": "Miami Bici",
-      "songLikes": 0,
-      "songDislikes": 1,
-      "youtubeId": "7XQ0t89ibJw",
-      "dateRadioPlayed": "16-09-2023 15:12:33",
-      "radioChannel": "KissFM",
-    }
-  ]
+  currentSong$!: Observable<Song>;
 
-  constructor(private _route: ActivatedRoute, private _playerMainService: PlayerMainService) {
+  constructor(private _route: ActivatedRoute, private _playerMainService: PlayerMainService, private dialog: MatDialog) {
 
   }
 
@@ -248,8 +29,11 @@ export class MainComponent implements OnInit {
       map((paramsMap) => paramsMap.get('radioChannelName') as string),
       switchMap(async (radioChannelName) => this._playerMainService.getSongs(radioChannelName))
     ).subscribe();
+    
+    this.songsList$ = this._playerMainService.songsList$;
+    this.currentSong$ = this._playerMainService.currentSong$;
 
-    this.songsList$ = this._playerMainService.songsList$
+    this.openStartPlaylistDialog();
   }
 
   handleShowYtVideo(event: boolean): void {
@@ -263,5 +47,23 @@ export class MainComponent implements OnInit {
       this.playPause = true;
     }
     
+  }
+
+  openStartPlaylistDialog() {
+    const dialogRef = this.dialog.open(PlaylistStartComponent);
+
+    dialogRef.afterClosed().subscribe(
+      res => {
+        if (!res) {
+
+        }
+        this.handleBackwordForwardSong();
+      }
+    )
+  }
+
+  handleBackwordForwardSong(event: number = 0) {
+    this._playerMainService.handleBackwordForwardSong(event);
+    this._playerMainService.handlePlayPause(true);
   }
 }

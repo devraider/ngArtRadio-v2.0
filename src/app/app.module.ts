@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -26,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     InputTextModule,
     HttpClientModule,
     MatButtonModule,
+    MatDialogModule,
     RouterModule.forRoot([
       // Do leazy loading
       {path: "", loadChildren: () => import('./welcome/welcome.module').then(m => m.WelcomeModule)},

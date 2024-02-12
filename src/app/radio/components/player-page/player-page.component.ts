@@ -64,8 +64,7 @@ onPlayerReady(event: any) {
           this.pauseVideo();
         } else if (playerState !== YT.PlayerState.PLAYING && play) {
           this.playVideo();
-        }
-        
+        } 
     }
   });
 }
@@ -79,8 +78,14 @@ onPlayerStateChange(event: any) {
   } else if (event.data === YT.PlayerState.PAUSED) {
     this.pauseVideo();
 
+  } else if (event.data === YT.PlayerState.ENDED) {
+    console.log(`${event.data} === ${YT.PlayerState.ENDED}`);
+    this.handleForward();
   }
 }
+  handleForward() {
+    this._playerMainService.handleBackwordForwardSong(1);
+  }
 
 playVideo(): void {
   this.player.playVideo();

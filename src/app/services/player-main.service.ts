@@ -14,6 +14,9 @@ export class PlayerMainService {
   #songsList$ = new Subject<Song[]>();
   songsList$ = this.#songsList$.asObservable();
 
+  #currentSong$ = new Subject<Song>();
+  currentSong$ = this.#currentSong$.asObservable();
+
   #showYtIcon$ = new BehaviorSubject<boolean>(false);
   showYtIcon$ = this.#showYtIcon$.asObservable();
   #playPause$ = new BehaviorSubject<boolean>(false);
@@ -21,7 +24,18 @@ export class PlayerMainService {
   #playerState$ = new Subject<number>();
   playerState$ = this.#playerState$.asObservable();
 
-  constructor(private _http: HttpClient) { }
+
+  private songsList: Song[] = [];
+  private currentSongIndex: number = 0;
+
+  constructor(private _http: HttpClient) {
+    this.songsList$.subscribe(songs => {
+      this.songsList = songs;
+      // Reset current song index whenever the songs list changes
+      this.currentSongIndex = 0;
+    });
+
+   }
 
   handlePlayPause(playState: boolean): void {
     this.#playPause$.next(playState);
@@ -35,4 +49,24 @@ export class PlayerMainService {
     this._http.get<Song[]>(this.#SONGS_API)
     .subscribe((data) => this.#songsList$.next(data));
   }
+
+  handleBackwordForwardSong(action: number = 0): void {
+    console.log(`Current ${this.currentSongIndex} ${action}`);
+    if (action === 1 && this.currentSongIndex < this.songsList.length - 1) {
+      // Move to next song
+      this.currentSongIndex++;
+      console.log(`Pe aici ${this.currentSongIndex}++;`);
+    } else if (action === -1 && this.currentSongIndex > 0) {
+      // Move to previous song
+      this.currentSongIndex--;
+      console.log(`Pe aici ${this.currentSongIndex};`);
+      
+    }
+    console.log(`Dupa calculce ${this.currentSongIndex} ${action}`);
+
+
+    // Emit the new current song
+    this.#currentSong$.next(this.songsList[this.currentSongIndex]);
+  }
+  
  }

@@ -6,3 +6,8 @@
 .card::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
 }
+
+.playing {
+    background: #f7dbdb !important;
+    height: 8vh;
+}

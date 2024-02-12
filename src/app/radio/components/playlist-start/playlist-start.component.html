@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Would you like to stream this radio playlist?</h2>
+<mat-dialog-content>
+    <p>If you want to start playing song from selected radion you must click on button blow.</p>
+
+    <p>Otherwise, please click on Cancel and you will be redirected to main menu.</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="false">Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Start Playing</button>
+</mat-dialog-actions>

@@ -1,12 +1,27 @@
-<app-playlist></app-playlist>
-<!-- <p>{{songsList$ | async | json}}</p> -->
-<app-player-page
-    [style.display]="showYtVideo ? '' : 'none'"
-    [youtubeId]="songs[4].youtubeId"
-    >
-</app-player-page>
 
-<app-player-commands
-    [song]="songs[4]"
-    (showYtVideo)="handleShowYtVideo($event)">
-</app-player-commands>
+<app-playlist *ngIf="songsList$ | async as songs; else noSong;" [songs]="songs" [currentSong$]="currentSong$"></app-playlist>
+
+<ng-template #noSong>
+    <div class="alert alert-warning" role="alert">
+        You don't have songs in this playlist!
+      </div>
+</ng-template>
+
+
+<ng-container *ngIf="currentSong$ | async as currentSong">
+    <app-player-page
+        [style.display]="showYtVideo ? '' : 'none'"
+        [youtubeId]="currentSong.youtubeId"
+        >
+    </app-player-page>
+
+    <app-player-commands
+        [song]="currentSong"
+        (showYtVideo)="handleShowYtVideo($event)"
+        (backwordForwardSong)="handleBackwordForwardSong($event)"
+        >
+    </app-player-commands>
+</ng-container>
+
+
+<button (click)="handleBackwordForwardSong(1)">Start</button>
