@@ -3,10 +3,10 @@
         <ng-template pTemplate="body" let-song let-rowIndex="rowIndex">
             <tr [class.playing]="song.id === (currentSong$| async)?.id">
                 <td>
-                    {{ song.songSinger }}
+                    {{ song.singer }}
                 </td>
                 <td>
-                    {{ song.songName }}
+                    {{ song.name }}
                 </td>
                 <!-- <td>
                     <i class="fa-regular fa-thumbs-up"></i>
@@ -18,7 +18,7 @@
                 </td> -->
                 <td>
                     <i class="fa-solid fa-radio"></i>
-                    {{ song.dateRadioPlayed }}
+                    {{ song.dateCreated }}
                 </td>
             </tr>
         </ng-template>
