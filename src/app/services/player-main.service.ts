@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, pipe, tap } from 'rxjs';
 import { Song } from '../models/song';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class PlayerMainService {
   #ROOT_API = environment.backendApi
-  #SONGS_API = `${this.#ROOT_API}/kissfm.json`
+  #SONGS_API = `${this.#ROOT_API}/radioSongs/search/findByRadioSlug?slug=`
 
   #songsList$ = new Subject<Song[]>();
   songsList$ = this.#songsList$.asObservable();
@@ -45,9 +45,10 @@ export class PlayerMainService {
   }
 
   getSongs(radioPathName: string): void {
-    // this._http.get<Song[]>(`${this.#SONGS_API}/${radioPathName}`)
-    this._http.get<Song[]>(this.#SONGS_API)
-    .subscribe((data) => this.#songsList$.next(data));
+    this._http.get<ReponseSong>(`${this.#SONGS_API}${radioPathName}`)
+    // this._http.get<Song[]>(this.#SONGS_API)
+    .pipe(tap(data => console.log(data)))
+    .subscribe((data) => this.#songsList$.next(data._embedded.radioSongs));
   }
 
   handleBackwordForwardSong(action: number = 0): void {
@@ -69,4 +70,10 @@ export class PlayerMainService {
     this.#currentSong$.next(this.songsList[this.currentSongIndex]);
   }
   
+ }
+
+ interface ReponseSong {
+    _embedded: {
+      radioSongs: Song[]
+    }
  }
