@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, map } from 'rxjs';
 import { Radio } from 'src/app/models/radio';
 
 @Injectable({
@@ -13,12 +13,19 @@ export class WelcomeService {
   
   
   #ROOT_API = environment.backendApi
-  #RADIO_API = `${this.#ROOT_API}/radio.json`
+  #RADIO_API = `${this.#ROOT_API}/radios`
   constructor(private _http: HttpClient) { }
 
   getRadioChannels(): void {
     this._http
-    .get<Radio[]>(this.#RADIO_API)
-    .subscribe((data) => this.#radioChannels$.next(data));
+    .get<ResponseRadio>(this.#RADIO_API)
+    .subscribe((data) => this.#radioChannels$.next(data._embedded.radios));
   }
+}
+
+
+interface ResponseRadio {
+    _embedded: {
+      radios: Radio[]
+    }
 }

@@ -2,9 +2,13 @@
 <p-card [header]="radio.name" >
     
     <ng-template pTemplate="body"  >
-        <h5>{{radio.radioTypes.join(", ")}}</h5>
+        <h5>
+           <ng-container *ngFor="let type of radio.radioTypes">
+            {{type.typeName}}
+           </ng-container>
+        </h5>
         <p >
-            {{radio.descripton}}
+            {{radio.description}}
         </p>
     </ng-template>
     <ng-template pTemplate="footer" >
