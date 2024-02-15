@@ -1,11 +1,9 @@
 export interface Song {
     id: number
-    songSinger: string,
-    songName: string,
-    songLikes: number,
-    songDislikes: number,
+    singer: string,
+    name: string,
+    likes: number,
+    dislikes: number,
     youtubeId: string,
-    dateRadioPlayed: string,
-    radioChannel: string
-    
+    dateCreated: Date,    
 }

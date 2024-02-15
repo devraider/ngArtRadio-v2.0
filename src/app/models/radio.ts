@@ -1,9 +1,11 @@
+import { RadioType } from "./radio-type";
 
 export interface Radio {
-    radioName: string,
-    radioSlug: string,
-    radioType: string[],
-    radioDescripton?: string,
-    radioContact?: string,
-    radioImg: string,
+    name: string,
+    slug: string,
+    type: string[],
+    descripton?: string,
+    contact?: string,
+    img: string,
+    radioTypes: RadioType[]
 }
