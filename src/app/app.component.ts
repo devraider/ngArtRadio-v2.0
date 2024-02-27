@@ -11,6 +11,10 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
+    `
+    let song = document.querySelector("#main > div.container > div > div.span10 > div.box2 > div.row > div.span3 > div.songTitles.song-list-cont > div.slimScrollDiv > div._songs.slimScrollDivSongList > div > div.kv1_pad.kpad3.thumbnail.songCont")
+    console.log(song.getAttribute("data-youtube"), " -> ", song.querySelector("div.txt1").textContent)
+    `
   }
 
 }

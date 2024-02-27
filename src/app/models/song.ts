@@ -5,5 +5,6 @@ export interface Song {
     likes: number,
     dislikes: number,
     youtubeId: string,
-    dateCreated: Date,    
+    dateInserted: Date,    
+    dateStreamPlayed: Date    
 }

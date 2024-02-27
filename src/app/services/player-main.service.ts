@@ -45,7 +45,7 @@ export class PlayerMainService {
   }
 
   getSongs(radioPathName: string): void {
-    this._http.get<ReponseSong>(`${this.#SONGS_API}${radioPathName}`)
+    this._http.get<ReponseSong>(`${this.#SONGS_API}${radioPathName}&sort=dateStreamPlayed,desc`)
     // this._http.get<Song[]>(this.#SONGS_API)
     .pipe(tap(data => console.log(data)))
     .subscribe((data) => this.#songsList$.next(data._embedded.radioSongs));
