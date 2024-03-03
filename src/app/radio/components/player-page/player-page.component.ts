@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Observable, distinctUntilChanged, take } from 'rxjs';
 import { PlayerMainService } from 'src/app/services/player-main.service';
 declare var YT: any; // Add this line to declare the type of YT as any
@@ -8,7 +8,7 @@ declare var YT: any; // Add this line to declare the type of YT as any
   templateUrl: './player-page.component.html',
   styleUrls: ['./player-page.component.scss']
 })
-export class PlayerPageComponent implements OnInit, OnChanges {
+export class PlayerPageComponent implements OnInit, OnChanges, OnDestroy {
   @Input() youtubeId!: string;
   playPause$!: Observable<boolean>;
   apiLoaded = false;
@@ -16,15 +16,25 @@ export class PlayerPageComponent implements OnInit, OnChanges {
 
 constructor(private _playerMainService: PlayerMainService) {
 }
+  ngOnDestroy(): void {
+    this.player.destroy;
+  }
 
 ngOnInit() {
   this.playPause$ = this._playerMainService.playPause$;
-  (window as any).onYouTubeIframeAPIReady = () => {
+  if ((window as any)['YT'] && YT.Player) {
     if (this.youtubeId) {
       this.loadVideo(this.youtubeId);
     }
-  };
-  this.loadYouTubeAPI();
+  } else {
+      this.loadYouTubeAPI();
+      (window as any).onYouTubeIframeAPIReady = () => {
+      if (this.youtubeId) {
+        this.loadVideo(this.youtubeId);
+      }
+    };
+  }
+
 }
 
 ngOnChanges(changes: SimpleChanges): void {
@@ -38,8 +48,10 @@ ngOnChanges(changes: SimpleChanges): void {
 
 loadYouTubeAPI() {
   const tag = document.createElement('script');
+  tag.id = "youtubeApiScript"
   tag.src = 'https://www.youtube.com/iframe_api';
   document.body.appendChild(tag);
+  
 }
 
 loadVideo(vidID: string) {
