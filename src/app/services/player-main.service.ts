@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class PlayerMainService {
   #ROOT_API = environment.backendApi
-  #SONGS_API = `${this.#ROOT_API}/radioSongs/search/findByRadioSlug?slug=`
+  #SONGS_API = `${this.#ROOT_API}/radioSongs/search/findByRadioSlugAndActive?slug=`
 
   #songsList$ = new Subject<Song[]>();
   songsList$ = this.#songsList$.asObservable();
@@ -45,7 +45,7 @@ export class PlayerMainService {
   }
 
   getSongs(radioPathName: string): void {
-    this._http.get<ReponseSong>(`${this.#SONGS_API}${radioPathName}&sort=dateStreamPlayed,desc`)
+    this._http.get<ReponseSong>(`${this.#SONGS_API}${radioPathName}&active=1&sort=dateStreamPlayed,desc`)
     // this._http.get<Song[]>(this.#SONGS_API)
     .pipe(tap(data => console.log(data)))
     .subscribe((data) => this.#songsList$.next(data._embedded.radioSongs));
