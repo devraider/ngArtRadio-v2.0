@@ -3,5 +3,5 @@ export const environment: {
     backendApi: string
 } = {
     production: true,
-    backendApi: 'http://backend.artradio.link/api'
+    backendApi: 'https://backend.artradio.link/api'
 };
