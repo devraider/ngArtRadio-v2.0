@@ -1,27 +1,65 @@
-# ArtRadioUIV20
+# ngArtRadio 2.0 - An Angular web app
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.1.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+This is the frontend application for a newer version **ArtRadio** (for first version you can check [reactArtRadio V1](https://github.com/devraider/reactArtRadio-v1.0.0)).
+It's an ad-free online radio player built with Angular. 
+  
+> [!note]
+> This project using:
+> - Java, Spring boot framework as backend – code could be found: [javaArtRadio - Springboot](https://github.com/devraider/javaArtRadio-v2.0)
+>- Python, as crawler to collect songs from different radio stations – code could be found   [pyArtRadio - Python](https://github.com/devraider/pyArtRadio-v2.0)
 
-## Code scaffolding
+## I.1. Presentation images
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Home page
 
-## Build
+...
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## I.2. Features
 
-## Running unit tests
+- **Stream Radio Stations**: Access multiple stations for uninterrupted listening.
+- **Track History**: See a list of recently played songs from each station's playlist.
+- **Song Replays**: Replay songs through YouTube using the embedded player, without any ads.
+- **Responsive Design**: Works smoothly on both desktop and mobile.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## I.3. Technologies Used
 
-## Running end-to-end tests
+- **Angular**: Frontend framework for building dynamic user interfaces.
+- **TypeScript**: For type-safe code in Angular components.
+- **RxJS**: Reactive programming with observables for efficient state management.
+- **Bootstrap**: Styling framework.
+- **PrimeNG**: UI components library for rich, responsive user interfaces.
+- **YouTube Player API**: Integrates YouTube videos directly into the app for media streaming and control.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## I.4. Getting Started
 
-## Further help
+### I.4.1. Prerequisites
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- **Node.js** (v14+)
+- **npm** (10.8+)
+- **Angular CLI** (I would recommend to install it globally `npm install -g @angular/cli`)
+
+> [!warning]
+> You need to have [javaArtRadio](https://github.com/devraider/javaArtRadio-v2.0) and [pyArtRadio](https://github.com/devraider/pyArtRadio-v2.0) up and running before starting web application.
+### I.4.2. Installation and Setup
+
+1. **Clone the repository:**
+
+```bash
+
+   git clone https://github.com/devraider/ngArtRadio-v2.0.git
+
+   cd ngArtRadio-v2.0
+
+```
+2. **Install dependencies**
+
+```bash
+    npm install
+```
+
+### I.4.3. Run the application
+```bash
+   npm start
+```
