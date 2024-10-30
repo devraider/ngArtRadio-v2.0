@@ -7,6 +7,9 @@ import { PlayerPageComponent } from './components/player-page/player-page.compon
 import { RouterModule } from '@angular/router';
 import { TableModule } from 'primeng/table';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatButtonModule } from '@angular/material/button';
+import { PlaylistStartComponent } from './components/playlist-start/playlist-start.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -15,12 +18,16 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MainComponent,
     PlaylistComponent,
     PlayerCommandsComponent,
-    PlayerPageComponent
+    PlayerPageComponent,
+    PlaylistStartComponent
+    
   ],
   imports: [
     CommonModule,
     TableModule,
     FontAwesomeModule,
+    MatButtonModule,
+    MatDialogModule,
     RouterModule.forChild([
       {path: ":radioChannelName", component: MainComponent}
     ])

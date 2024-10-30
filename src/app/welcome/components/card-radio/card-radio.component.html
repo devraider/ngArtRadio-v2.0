@@ -1,14 +1,18 @@
-<a [routerLink]="'/radio/'+radio.radioSlug" >
-<p-card [header]="radio.radioName" >
+<a [routerLink]="'/radio/'+radio.slug" >
+<p-card [header]="radio.name" >
     
     <ng-template pTemplate="body"  >
-        <h5>{{radio.radioType}}</h5>
+        <h5>
+           <ng-container *ngFor="let type of radio.radioTypes">
+            {{type.typeName}}
+           </ng-container>
+        </h5>
         <p >
-            {{radio.radioDescripton}}
+            {{radio.description}}
         </p>
     </ng-template>
     <ng-template pTemplate="footer" >
-        <p>{{radio.radioContact}}</p>
+        <p>{{radio.contact}}</p>
     </ng-template>
 </p-card>
 </a>

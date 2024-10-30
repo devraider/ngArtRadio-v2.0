@@ -12,18 +12,22 @@
                     <img src="/assets/img/commons/sound_200.gif" width="50"/>
                 </div>
                 <div class="col-8">
-                    <h4>{{song.songName}}</h4>
-                    <span>{{song.songSinger}}</span>
+                    <h4>{{song.name}}</h4>
+                    <span>{{song.singer}}</span>
                 </div>
             </div>
         </div>
         <div class="col-6">
             <div class="row ">
-                <div class="col-4"><i class="fa-solid fa-backward font-size-30"></i></div>
                 <div class="col-4">
-                    <i class="fa-solid font-size-30" [ngClass]="playPause ? 'fa-pause' : 'fa-play' "></i>
+                    <button mat-icon-button (click)="handleBackwordForwardSong(-1)"><i class="fa-solid fa-backward font-size-30"></i></button>
                 </div>
-                <div class="col-4"><i class="fa-solid fa-forward font-size-30"></i></div>
+                <div class="col-4">
+                    <button mat-icon-button (click)="handlePlayPause()"><i class="fa-solid font-size-30" [ngClass]="(playPause$ | async) ? 'fa-pause' : 'fa-play' "></i></button>
+                </div>
+                <div class="col-4">
+                    <button mat-icon-button (click)="handleBackwordForwardSong(1)"><i class="fa-solid fa-forward font-size-30"></i></button>
+                </div>
             </div>
 
         </div>

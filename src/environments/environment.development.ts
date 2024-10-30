@@ -3,5 +3,5 @@ export const environment: {
     backendApi: string
 } = {
     production: false,
-    backendApi: 'http://localhost:4200/assets/mock'
+    backendApi: 'http://localhost:8085/api'
 };

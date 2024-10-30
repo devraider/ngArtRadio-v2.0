@@ -1,25 +1,24 @@
 <div class="card vh-100">
     <p-table [value]="songs" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="body" let-song let-rowIndex="rowIndex">
-            <tr>
-                <td>{{ rowIndex }}</td>
+            <tr [class.playing]="song.id === (currentSong$ | async)?.id">
                 <td>
-                    {{ song.songSinger }}
+                    {{ song.singer }}
                 </td>
                 <td>
-                    {{ song.songName }}
+                    {{ song.name }}
                 </td>
-                <td>
+                <!-- <td>
                     <i class="fa-regular fa-thumbs-up"></i>
                     {{ song.songLikes }}
                 </td>
                 <td>
                     <i class="fa-regular fa-thumbs-down"></i>
                     {{ song.songDislikes }}
-                </td>
+                </td> -->
                 <td>
                     <i class="fa-solid fa-radio"></i>
-                    {{ song.dateRadioPlayed }}
+                    {{ song.dateStreamPlayed | date:'dd/MM/yyyy  HH:mm' }}
                 </td>
             </tr>
         </ng-template>

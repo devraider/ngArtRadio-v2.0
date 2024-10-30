@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Observable, distinctUntilChanged, take } from 'rxjs';
+import { PlayerMainService } from 'src/app/services/player-main.service';
 declare var YT: any; // Add this line to declare the type of YT as any
 
 @Component({
@@ -6,45 +8,50 @@ declare var YT: any; // Add this line to declare the type of YT as any
   templateUrl: './player-page.component.html',
   styleUrls: ['./player-page.component.scss']
 })
-export class PlayerPageComponent implements OnInit, OnChanges {
+export class PlayerPageComponent implements OnInit, OnChanges, OnDestroy {
   @Input() youtubeId!: string;
-  @Input() playPause!: boolean;
-  @Output() playerState = new EventEmitter<number>();
+  playPause$!: Observable<boolean>;
   apiLoaded = false;
   player: any;
 
+constructor(private _playerMainService: PlayerMainService) {
+}
+  ngOnDestroy(): void {
+    this.player.destroy;
+  }
+
 ngOnInit() {
-  (window as any).onYouTubeIframeAPIReady = () => {
+  this.playPause$ = this._playerMainService.playPause$;
+  if ((window as any)['YT'] && YT.Player) {
     if (this.youtubeId) {
       this.loadVideo(this.youtubeId);
     }
-  };
-  this.loadYouTubeAPI();
+  } else {
+      this.loadYouTubeAPI();
+      (window as any).onYouTubeIframeAPIReady = () => {
+      if (this.youtubeId) {
+        this.loadVideo(this.youtubeId);
+      }
+    };
+  }
+
 }
 
 ngOnChanges(changes: SimpleChanges): void {
-  console.log(changes['youtubeId']?.currentValue)
     if(this.player && changes['youtubeId']) {
       if(changes['youtubeId'].currentValue !== changes['youtubeId'].previousValue) {
         this.player.destroy(); // Destroy the previous player instance
-        console.log(`Destroy vid ${this.youtubeId}`)
       }
       this.loadVideo(this.youtubeId);
-  }
-  console.log(changes['playPause'])
-  if (changes['playPause'] && changes['playPause'].currentValue !== changes['playPause'].previousValue){
-    if (this.playPause){
-      this.playVideo();
-    } else {
-      this.pauseVideo();
-    }
   }
 }
 
 loadYouTubeAPI() {
   const tag = document.createElement('script');
+  tag.id = "youtubeApiScript"
   tag.src = 'https://www.youtube.com/iframe_api';
   document.body.appendChild(tag);
+  
 }
 
 loadVideo(vidID: string) {
@@ -60,23 +67,46 @@ loadVideo(vidID: string) {
 }
 
 onPlayerReady(event: any) {
-  // console.log('player ready')
-  console.log(this.player)
-  // event.target.playVideo();
+  let playerState =  event.target.getPlayerState();
+  this.playPause$.pipe(
+    distinctUntilChanged(),
+  ).subscribe((play: boolean) => {
+    if (this.player) {
+        if (playerState !== YT.PlayerState.PLAYING && !play){
+          this.pauseVideo();
+        } else if (playerState !== YT.PlayerState.PLAYING && play) {
+          this.playVideo();
+        } 
+    }
+  });
 }
 
 onPlayerStateChange(event: any) {
-  console.log(event.data, YT.PlayerState)
-  this.playerState.emit(event.data)
+  console.log(YT.PlayerState, event.data);
+  this._playerMainService.handlePlayerState(event.data);
+  if (event.data === YT.PlayerState.PLAYING) {
+    this.playVideo();
+
+  } else if (event.data === YT.PlayerState.PAUSED) {
+    this.pauseVideo();
+
+  } else if (event.data === YT.PlayerState.ENDED) {
+    console.log(`${event.data} === ${YT.PlayerState.ENDED}`);
+    this.handleForward();
+  }
 }
+  handleForward() {
+    this._playerMainService.handleBackwordForwardSong(1);
+  }
 
 playVideo(): void {
   this.player.playVideo();
+  this._playerMainService.handlePlayPause(true);
 }
 
 pauseVideo() {
-  console.log("stopped")
   this.player.pauseVideo();
+  this._playerMainService.handlePlayPause(false);
 }
 
 }
