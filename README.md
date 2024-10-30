@@ -2,7 +2,7 @@
 
 
 
-This is the frontend application for a newer version **ArtRadio** (for first version you can check [reactArtRadio V1](https://github.com/devraider/reactArtRadio-v1.0.0)).
+This is the frontend application for a newer version **ArtRadio** (for first version you can check [reactArtRadio V1](https://github.com/devraider/reactArtRadio-v1.0)).
 It's an ad-free online radio player built with Angular. 
   
 > [!note]
